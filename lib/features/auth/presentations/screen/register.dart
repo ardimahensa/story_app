@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:story_u/features/auth/bloc/register_bloc.dart';
 import 'package:story_u/features/auth/cubit/password_visibility_cubit.dart';
-import 'package:story_u/features/auth/view/login.dart';
+import 'package:story_u/features/auth/presentations/screen/login.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

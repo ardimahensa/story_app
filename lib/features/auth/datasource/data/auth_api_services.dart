@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../model/register_response_model.dart';
 
-class ApiServices {
+class AuthApiServices {
   Future<LoginResponse> login(String email, String password) async {
     final response = await http.post(Uri.parse(Constant.loginUrl), body: {
       'email': email,

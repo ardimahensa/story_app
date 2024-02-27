@@ -662,10 +662,10 @@ class __$$RegisterSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? registerResponse = freezed,
+    Object? registerResponse = null,
   }) {
     return _then(_$RegisterSuccessImpl(
-      freezed == registerResponse
+      null == registerResponse
           ? _value.registerResponse
           : registerResponse // ignore: cast_nullable_to_non_nullable
               as RegisterResponse,
@@ -691,13 +691,12 @@ class _$RegisterSuccessImpl implements _RegisterSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RegisterSuccessImpl &&
-            const DeepCollectionEquality()
-                .equals(other.registerResponse, registerResponse));
+            (identical(other.registerResponse, registerResponse) ||
+                other.registerResponse == registerResponse));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(registerResponse));
+  int get hashCode => Object.hash(runtimeType, registerResponse);
 
   @JsonKey(ignore: true)
   @override

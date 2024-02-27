@@ -6,8 +6,8 @@ import 'package:story_u/features/auth/cubit/password_visibility_cubit.dart';
 import 'package:story_u/features/auth/cubit/theme_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:story_u/features/auth/datasource/data/user_data.dart';
-import 'package:story_u/features/auth/view/home.dart';
-import 'package:story_u/features/auth/view/login.dart';
+import 'package:story_u/features/auth/presentations/screen/home.dart';
+import 'package:story_u/features/auth/presentations/screen/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

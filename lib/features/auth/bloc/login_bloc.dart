@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:story_u/features/auth/datasource/data/api_services.dart';
+import 'package:story_u/features/auth/datasource/data/auth_api_services.dart';
 import 'package:story_u/features/auth/datasource/data/user_data.dart';
 import 'package:story_u/features/auth/datasource/model/login_response_model.dart';
 import 'package:story_u/features/auth/datasource/model/login_result_model.dart';
@@ -10,7 +10,7 @@ part 'login_state.dart';
 part 'login_bloc.freezed.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  ApiServices apiServices = ApiServices();
+  AuthApiServices apiServices = AuthApiServices();
 
   LoginBloc() : super(const _Initial()) {
     on<_LoginRequest>((event, emit) async {

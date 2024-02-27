@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:story_u/features/auth/cubit/password_visibility_cubit.dart';
 import 'package:story_u/features/auth/cubit/theme_cubit.dart';
-import 'package:story_u/features/auth/view/home.dart';
-import 'package:story_u/features/auth/view/register.dart';
-import 'package:story_u/widgets/custom_form.dart';
+import 'package:story_u/features/auth/presentations/screen/home.dart';
+import 'package:story_u/features/auth/presentations/screen/register.dart';
+import 'package:story_u/features/auth/presentations/widgets/custom_form.dart';
 
-import '../bloc/login_bloc.dart';
+import '../../bloc/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

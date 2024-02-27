@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:story_u/features/auth/cubit/theme_cubit.dart';
-import 'package:story_u/features/auth/view/login.dart';
+import 'package:story_u/features/auth/presentations/screen/login.dart';
 
-import '../bloc/login_bloc.dart';
+import '../../bloc/login_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
