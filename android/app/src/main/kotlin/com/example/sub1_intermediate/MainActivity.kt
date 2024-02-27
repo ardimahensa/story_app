@@ -1,4 +1,4 @@
-package com.example.sub1_intermediate
+package com.example.story_u
 
 import io.flutter.embedding.android.FlutterActivity
 
