@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:story_u/features/auth/bloc/register_bloc.dart';
 import 'package:story_u/features/auth/cubit/password_visibility_cubit.dart';
-import 'package:story_u/features/auth/presentations/screen/login.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -126,12 +126,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     alignment: PlaceholderAlignment.middle,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
+                        GoRouter.of(context).goNamed('login');
                       },
                       child: const Text(
                         'Login now',
@@ -165,12 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             const Color.fromARGB(255, 111, 111, 110),
                       ),
                     );
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
+                    GoRouter.of(context).goNamed('home');
                   },
                   registerError: (errorMessage) {
                     return ScaffoldMessenger.of(context).showSnackBar(
@@ -184,9 +174,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               },
               builder: (context, state) {
                 return state.maybeWhen(
-                  registerLoading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  registerLoading: () =>
+                      const Center(child: CircularProgressIndicator()),
                   orElse: () {
                     return ElevatedButton(
                       onPressed: () {

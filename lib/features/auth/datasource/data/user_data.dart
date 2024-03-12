@@ -1,33 +1,24 @@
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/login_result_model.dart';
-
 class UserDataLocal {
-  final String _loginResultKey = 'login_result';
-  Future<void> saveLoginResult(LoginResult loginResult) async {
+  final String _tokenKey = 'login_result';
+  Future<void> saveLoginResult(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String loginResultJson = json.encode(loginResult.toJson());
-    await prefs.setString(_loginResultKey, loginResultJson);
+    await prefs.setString(_tokenKey, token);
   }
 
-  Future<LoginResult?> getLoginResult() async {
+  Future<String?> getLoginToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? loginResultJson = prefs.getString(_loginResultKey);
-    if (loginResultJson != null) {
-      return LoginResult.fromJson(json.decode(loginResultJson));
-    }
-    return null;
+    return prefs.getString(_tokenKey);
   }
 
   Future<bool> isLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey(_loginResultKey);
+    return prefs.containsKey(_tokenKey);
   }
 
   Future<void> clearLoginResult() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+    await prefs.remove(_tokenKey);
   }
 }

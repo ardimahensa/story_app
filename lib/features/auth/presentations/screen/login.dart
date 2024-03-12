@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:story_u/features/auth/cubit/password_visibility_cubit.dart';
-import 'package:story_u/features/auth/cubit/theme_cubit.dart';
-import 'package:story_u/features/auth/presentations/screen/home.dart';
-import 'package:story_u/features/auth/presentations/screen/register.dart';
+import 'package:story_u/features/stories/cubit/theme_cubit.dart';
 import 'package:story_u/features/auth/presentations/widgets/custom_form.dart';
 
 import '../../bloc/login_bloc.dart';
@@ -112,12 +111,7 @@ class LoginScreen extends StatelessWidget {
                       alignment: PlaceholderAlignment.middle,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
-                            ),
-                          );
+                          GoRouter.of(context).go('/register');
                         },
                         child: const Text(
                           'Register now',
@@ -161,12 +155,7 @@ class LoginScreen extends StatelessWidget {
                       backgroundColor: const Color.fromARGB(255, 111, 111, 110),
                     ),
                   );
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
-                  );
+                  GoRouter.of(context).goNamed('home');
                 },
                 loginError: (errorMessage) {
                   return ScaffoldMessenger.of(context).showSnackBar(
