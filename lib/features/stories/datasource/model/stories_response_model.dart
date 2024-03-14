@@ -5,7 +5,7 @@ import 'package:story_u/features/stories/datasource/model/list_stories_model.dar
 class StoriesResponse {
   final bool error;
   final String message;
-  final List<Story> stories;
+  final List<StoryList> stories;
 
   StoriesResponse({
     required this.error,
@@ -22,7 +22,7 @@ class StoriesResponse {
         error: json["error"],
         message: json["message"],
         stories: (json['listStory'] as List)
-            .map<Story>((e) => Story.fromMap(e))
+            .map<StoryList>((e) => StoryList.fromMap(e))
             .toList(),
       );
 

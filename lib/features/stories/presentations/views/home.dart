@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+import 'package:story_u/features/detail_stories/bloc/stories_detail_bloc.dart';
 import 'package:story_u/features/stories/cubit/theme_cubit.dart';
 import 'package:story_u/features/stories/bloc/stories_bloc.dart';
 import 'package:story_u/features/stories/presentations/widgets/date_time.dart';
@@ -182,7 +183,17 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(height: 10),
 
                             //gambar postingan
-                            Image.network(stories.photoUrl),
+                            GestureDetector(
+                                onTap: () async {
+                                  context.read<StoriesDetailBloc>().add(
+                                        StoriesDetailEvent.getDetailStories(
+                                            stories.id),
+                                      );
+
+                                  GoRouter.of(context).goNamed('detail');
+                                },
+                                child: Center(
+                                    child: Image.network(stories.photoUrl))),
 
                             const SizedBox(height: 10),
 

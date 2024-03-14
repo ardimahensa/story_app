@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class StoryList {
+class DetailStoryList {
   final String id;
   final String name;
   final String description;
@@ -9,7 +9,7 @@ class StoryList {
   final num? lat;
   final num? lon;
 
-  StoryList({
+  DetailStoryList({
     required this.id,
     required this.name,
     required this.description,
@@ -19,11 +19,12 @@ class StoryList {
     this.lon,
   });
 
-  factory StoryList.fromJson(String str) => StoryList.fromMap(json.decode(str));
+  factory DetailStoryList.fromJson(String str) =>
+      DetailStoryList.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory StoryList.fromMap(Map<String, dynamic> json) => StoryList(
+  factory DetailStoryList.fromMap(Map<String, dynamic> json) => DetailStoryList(
         id: json["id"],
         name: json["name"],
         description: json["description"],
