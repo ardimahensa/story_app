@@ -10,11 +10,17 @@ part 'stories_bloc.freezed.dart';
 
 class StoriesBloc extends Bloc<StoriesEvent, StoriesState> {
   StoriesApiServices storiesApiServices = StoriesApiServices();
+  final int _currentPage = 1;
+  final int _currentSize = 20;
+
   StoriesBloc() : super(const _Initial()) {
     on<_GetStories>((event, emit) async {
       emit(const StoriesState.storiesLoading());
       try {
-        final result = await storiesApiServices.getAllStories();
+        final result = await storiesApiServices.getAllStories(
+          size: _currentSize,
+          page: _currentPage,
+        );
         if (result.error == false) {
           emit(StoriesState.storiesLoaded(result.stories));
         } else if (result.error == true) {

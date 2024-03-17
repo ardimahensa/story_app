@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:story_u/features/auth/datasource/data/auth_api_services.dart';
@@ -22,14 +20,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (result.error == false) {
           final loginResult = result.loginResult;
 
-          await UserDataLocal().saveLoginResult(result.loginResult.token);
-          final savedToken = await UserDataLocal().getLoginToken();
-          log('Token berhasil disimpan:  $savedToken');
+          await UserDataLocal().saveLoginResult(
+            result.loginResult.token,
+            result.loginResult.name,
+          );
           emit(LoginState.loginSuccess(loginResult));
-          log('login bloc error false: ${result.error}');
         } else {
           emit(LoginState.loginError(result.message));
-          log('login bloc error true: ${result.message}');
         }
       } catch (error) {
         emit(LoginState.loginError(error.toString()));

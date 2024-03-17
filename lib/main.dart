@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:story_u/features/add_stories/cubit/add_stories_cubit.dart';
 import 'package:story_u/features/auth/bloc/login_bloc.dart';
 import 'package:story_u/features/auth/bloc/register_bloc.dart';
 import 'package:story_u/features/auth/cubit/password_visibility_cubit.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => PasswordVisibilityCubit()),
         BlocProvider(create: (context) => RegisterBloc()),
         BlocProvider(create: (context) => StoriesDetailBloc()),
+        BlocProvider(create: (context) => AddStoriesCubit()),
         BlocProvider(
             create: (context) =>
                 StoriesBloc()..add(const StoriesEvent.getStories())),

@@ -7,11 +7,12 @@ import 'package:story_u/features/stories/datasource/model/stories_response_model
 import 'package:http/http.dart' as http;
 
 class StoriesApiServices {
-  Future<StoriesResponse> getAllStories() async {
+  Future<StoriesResponse> getAllStories(
+      {required int page, required int size}) async {
     final String? token = await UserDataLocal().getLoginToken();
 
     final response = await http.get(
-      Uri.parse(Constant.getStoriesUrl),
+      Uri.parse('${Constant.getStoriesUrl}?page=$page&size=$size'),
       headers: {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+import 'package:story_u/features/auth/datasource/data/user_data.dart';
 import 'package:story_u/features/detail_stories/bloc/stories_detail_bloc.dart';
 import 'package:story_u/features/stories/cubit/theme_cubit.dart';
 import 'package:story_u/features/stories/bloc/stories_bloc.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<StoriesBloc>().add(const StoriesEvent.getStories());
     return SafeArea(
       child: Scaffold(
         body: NestedScrollView(
@@ -40,12 +42,15 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 BlocBuilder<LoginBloc, LoginState>(
                   builder: (context, state) {
+                    UserDataLocal userDataLocal = UserDataLocal();
                     return Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: Text(
                         'Hi ${state.maybeWhen(
                           loginSuccess: (loginResult) => loginResult.name,
-                          orElse: () => 'Guest',
+                          orElse: () {
+                            userDataLocal.getName().toString();
+                          },
                         )}!',
                       ),
                     );
@@ -239,6 +244,12 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            GoRouter.of(context).goNamed('add');
+          },
+          child: const Icon(Icons.add_box),
         ),
       ),
     );

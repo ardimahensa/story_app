@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:story_u/features/add_stories/presentations/view/add_stories.dart';
 import 'package:story_u/features/auth/datasource/data/user_data.dart';
 import 'package:story_u/features/auth/presentations/screen/login.dart';
 import 'package:story_u/features/auth/presentations/screen/register.dart';
@@ -39,11 +40,17 @@ final routes = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-        path: '/stories',
-        name: 'detail',
-        builder: (context, state) {
-          final id = state.pathParameters['id'] ?? '';
-          return DetailScreen(id: id);
-        }),
+      path: '/add',
+      name: 'add',
+      builder: (context, state) => AddStories(),
+    ),
+    GoRoute(
+      path: '/stories',
+      name: 'detail',
+      builder: (context, state) {
+        final id = state.pathParameters['id'] ?? '';
+        return DetailScreen(id: id);
+      },
+    ),
   ],
 );
