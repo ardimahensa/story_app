@@ -34,7 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     });
 
     on<_LogoutRequested>((event, emit) async {
-      await UserDataLocal().clearLoginResult();
+      UserDataLocal().clearLoginResult();
       emit(const LoginState.loggedOut());
     });
   }

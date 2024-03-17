@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserDataLocal userDataLocal = UserDataLocal();
     context.read<StoriesBloc>().add(const StoriesEvent.getStories());
     return SafeArea(
       child: Scaffold(
@@ -42,20 +43,47 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 BlocBuilder<LoginBloc, LoginState>(
                   builder: (context, state) {
-                    UserDataLocal userDataLocal = UserDataLocal();
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Text(
-                        'Hi ${state.maybeWhen(
-                          loginSuccess: (loginResult) => loginResult.name,
-                          orElse: () {
-                            userDataLocal.getName().toString();
-                          },
-                        )}!',
-                      ),
+                    return FutureBuilder<String?>(
+                      future: userDataLocal.getName(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator(); // Atau widget lain yang menunjukkan loading
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          final String? name = snapshot.data;
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Text(
+                              'Hi ${state.maybeWhen(
+                                loginSuccess: (loginResult) => loginResult.name,
+                                orElse: () => name ?? 'perlu login lagi',
+                              )}!',
+                            ),
+                          );
+                        }
+                      },
                     );
                   },
                 ),
+                // BlocBuilder<LoginBloc, LoginState>(
+                //   builder: (context, state) {
+                //     UserDataLocal userDataLocal = UserDataLocal();
+                //     return Padding(
+                //       padding: const EdgeInsets.only(right: 10),
+                //       child: Text(
+                //         'Hi ${state.maybeWhen(
+                //           loginSuccess: (loginResult) =>
+                //               loginResult.name ?? 'perlu login lagi',
+                //           orElse: () async {
+                //             await userDataLocal.getName();
+                //           },
+                //         )}!',
+                //       ),
+                //     );
+                //   },
+                // ),
                 PopupMenuButton(
                   offset: const Offset(0, 55),
                   icon: const CircleAvatar(
