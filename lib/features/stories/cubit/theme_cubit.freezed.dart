@@ -16,36 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ThemeState {
-  bool get theme => throw _privateConstructorUsedError;
+  ThemeData get themeData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool theme) changeTheme,
+    required TResult Function(ThemeData themeData) changeTheme,
+    required TResult Function(ThemeData themeData) currentTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool theme)? changeTheme,
+    TResult? Function(ThemeData themeData)? changeTheme,
+    TResult? Function(ThemeData themeData)? currentTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool theme)? changeTheme,
+    TResult Function(ThemeData themeData)? changeTheme,
+    TResult Function(ThemeData themeData)? currentTheme,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_CurrentTheme value) currentTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_CurrentTheme value)? currentTheme,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_CurrentTheme value)? currentTheme,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +67,7 @@ abstract class $ThemeStateCopyWith<$Res> {
           ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res, ThemeState>;
   @useResult
-  $Res call({bool theme});
+  $Res call({ThemeData themeData});
 }
 
 /// @nodoc
@@ -77,13 +83,13 @@ class _$ThemeStateCopyWithImpl<$Res, $Val extends ThemeState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = null,
+    Object? themeData = null,
   }) {
     return _then(_value.copyWith(
-      theme: null == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as bool,
+      themeData: null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
     ) as $Val);
   }
 }
@@ -96,7 +102,7 @@ abstract class _$$ChangeThemeImplCopyWith<$Res>
       __$$ChangeThemeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool theme});
+  $Res call({ThemeData themeData});
 }
 
 /// @nodoc
@@ -110,13 +116,13 @@ class __$$ChangeThemeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = null,
+    Object? themeData = null,
   }) {
     return _then(_$ChangeThemeImpl(
-      null == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as bool,
+      null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
     ));
   }
 }
@@ -124,14 +130,14 @@ class __$$ChangeThemeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChangeThemeImpl implements _ChangeTheme {
-  const _$ChangeThemeImpl(this.theme);
+  const _$ChangeThemeImpl(this.themeData);
 
   @override
-  final bool theme;
+  final ThemeData themeData;
 
   @override
   String toString() {
-    return 'ThemeState.changeTheme(theme: $theme)';
+    return 'ThemeState.changeTheme(themeData: $themeData)';
   }
 
   @override
@@ -139,11 +145,12 @@ class _$ChangeThemeImpl implements _ChangeTheme {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChangeThemeImpl &&
-            (identical(other.theme, theme) || other.theme == theme));
+            (identical(other.themeData, themeData) ||
+                other.themeData == themeData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, theme);
+  int get hashCode => Object.hash(runtimeType, themeData);
 
   @JsonKey(ignore: true)
   @override
@@ -154,27 +161,30 @@ class _$ChangeThemeImpl implements _ChangeTheme {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool theme) changeTheme,
+    required TResult Function(ThemeData themeData) changeTheme,
+    required TResult Function(ThemeData themeData) currentTheme,
   }) {
-    return changeTheme(theme);
+    return changeTheme(themeData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool theme)? changeTheme,
+    TResult? Function(ThemeData themeData)? changeTheme,
+    TResult? Function(ThemeData themeData)? currentTheme,
   }) {
-    return changeTheme?.call(theme);
+    return changeTheme?.call(themeData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool theme)? changeTheme,
+    TResult Function(ThemeData themeData)? changeTheme,
+    TResult Function(ThemeData themeData)? currentTheme,
     required TResult orElse(),
   }) {
     if (changeTheme != null) {
-      return changeTheme(theme);
+      return changeTheme(themeData);
     }
     return orElse();
   }
@@ -183,6 +193,7 @@ class _$ChangeThemeImpl implements _ChangeTheme {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_CurrentTheme value) currentTheme,
   }) {
     return changeTheme(this);
   }
@@ -191,6 +202,7 @@ class _$ChangeThemeImpl implements _ChangeTheme {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_CurrentTheme value)? currentTheme,
   }) {
     return changeTheme?.call(this);
   }
@@ -199,6 +211,7 @@ class _$ChangeThemeImpl implements _ChangeTheme {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_CurrentTheme value)? currentTheme,
     required TResult orElse(),
   }) {
     if (changeTheme != null) {
@@ -209,12 +222,150 @@ class _$ChangeThemeImpl implements _ChangeTheme {
 }
 
 abstract class _ChangeTheme implements ThemeState {
-  const factory _ChangeTheme(final bool theme) = _$ChangeThemeImpl;
+  const factory _ChangeTheme(final ThemeData themeData) = _$ChangeThemeImpl;
 
   @override
-  bool get theme;
+  ThemeData get themeData;
   @override
   @JsonKey(ignore: true)
   _$$ChangeThemeImplCopyWith<_$ChangeThemeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CurrentThemeImplCopyWith<$Res>
+    implements $ThemeStateCopyWith<$Res> {
+  factory _$$CurrentThemeImplCopyWith(
+          _$CurrentThemeImpl value, $Res Function(_$CurrentThemeImpl) then) =
+      __$$CurrentThemeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ThemeData themeData});
+}
+
+/// @nodoc
+class __$$CurrentThemeImplCopyWithImpl<$Res>
+    extends _$ThemeStateCopyWithImpl<$Res, _$CurrentThemeImpl>
+    implements _$$CurrentThemeImplCopyWith<$Res> {
+  __$$CurrentThemeImplCopyWithImpl(
+      _$CurrentThemeImpl _value, $Res Function(_$CurrentThemeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? themeData = null,
+  }) {
+    return _then(_$CurrentThemeImpl(
+      null == themeData
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CurrentThemeImpl implements _CurrentTheme {
+  const _$CurrentThemeImpl(this.themeData);
+
+  @override
+  final ThemeData themeData;
+
+  @override
+  String toString() {
+    return 'ThemeState.currentTheme(themeData: $themeData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CurrentThemeImpl &&
+            (identical(other.themeData, themeData) ||
+                other.themeData == themeData));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, themeData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CurrentThemeImplCopyWith<_$CurrentThemeImpl> get copyWith =>
+      __$$CurrentThemeImplCopyWithImpl<_$CurrentThemeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ThemeData themeData) changeTheme,
+    required TResult Function(ThemeData themeData) currentTheme,
+  }) {
+    return currentTheme(themeData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ThemeData themeData)? changeTheme,
+    TResult? Function(ThemeData themeData)? currentTheme,
+  }) {
+    return currentTheme?.call(themeData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ThemeData themeData)? changeTheme,
+    TResult Function(ThemeData themeData)? currentTheme,
+    required TResult orElse(),
+  }) {
+    if (currentTheme != null) {
+      return currentTheme(themeData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangeTheme value) changeTheme,
+    required TResult Function(_CurrentTheme value) currentTheme,
+  }) {
+    return currentTheme(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangeTheme value)? changeTheme,
+    TResult? Function(_CurrentTheme value)? currentTheme,
+  }) {
+    return currentTheme?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangeTheme value)? changeTheme,
+    TResult Function(_CurrentTheme value)? currentTheme,
+    required TResult orElse(),
+  }) {
+    if (currentTheme != null) {
+      return currentTheme(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CurrentTheme implements ThemeState {
+  const factory _CurrentTheme(final ThemeData themeData) = _$CurrentThemeImpl;
+
+  @override
+  ThemeData get themeData;
+  @override
+  @JsonKey(ignore: true)
+  _$$CurrentThemeImplCopyWith<_$CurrentThemeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

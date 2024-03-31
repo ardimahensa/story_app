@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:story_u/extension/extention_datetime.dart';
 import 'package:story_u/features/detail_stories/bloc/stories_detail_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailScreen extends StatelessWidget {
   final String id;
@@ -13,7 +14,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Story'),
+        title: Text(AppLocalizations.of(context)!.detailStori),
         leading: IconButton(
           onPressed: () {
             GoRouter.of(context).goNamed('home');
@@ -96,7 +97,7 @@ class DetailScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Created at: ${detailStory.createdAt.toIndTime()}',
+                            '${AppLocalizations.of(context)!.ceatedAt} ${detailStory.createdAt.toIndTime()}',
                             style: const TextStyle(
                                 fontSize: 14, fontStyle: FontStyle.italic),
                           ),

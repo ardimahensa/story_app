@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:story_u/features/add_stories/cubit/add_stories_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddStories extends StatelessWidget {
   final TextEditingController _descriptionController = TextEditingController();
@@ -18,14 +19,14 @@ class AddStories extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Add Stories'),
+        title: Text(AppLocalizations.of(context)!.addStories),
         leading: IconButton(
             onPressed: () {
               GoRouter.of(context).pushNamed('home');
             },
             icon: const Icon(Icons.arrow_back)),
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: BlocBuilder<AddStoriesCubit, AddStoriesState>(
           builder: (context, state) {
             return state.maybeWhen(
@@ -43,13 +44,15 @@ class AddStories extends StatelessWidget {
                             onPressed: () {
                               context.read<AddStoriesCubit>().pickImageGaleri();
                             },
-                            child: const Text("From Galery"),
+                            child:
+                                Text(AppLocalizations.of(context)!.fromGalery),
                           ),
                           ElevatedButton(
                             onPressed: () {
                               context.read<AddStoriesCubit>().pickImageCamera();
                             },
-                            child: const Text("From Camera"),
+                            child:
+                                Text(AppLocalizations.of(context)!.fromCamera),
                           ),
                         ],
                       ),
@@ -68,9 +71,10 @@ class AddStories extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: TextField(
                           controller: _descriptionController,
-                          decoration: const InputDecoration(
-                            labelText: 'Description Stories',
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                            labelText: AppLocalizations.of(context)!
+                                .descriptionStories,
+                            border: const OutlineInputBorder(),
                           ),
                         ),
                       ),
@@ -83,7 +87,7 @@ class AddStories extends StatelessWidget {
                             onPressed: () {
                               context.read<AddStoriesCubit>().reset();
                             },
-                            child: const Text('Try Again'),
+                            child: Text(AppLocalizations.of(context)!.tryAgain),
                           ),
                           ElevatedButton(
                             onPressed: () async {
@@ -98,21 +102,24 @@ class AddStories extends StatelessWidget {
                                   GoRouter.of(context).go('/home');
                                 } catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Failed to upload image'),
+                                    SnackBar(
+                                      content: Text(
+                                          AppLocalizations.of(context)!
+                                              .failedUploadImage),
                                     ),
                                   );
                                 }
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content:
-                                        Text('Description cannot be empty'),
+                                  SnackBar(
+                                    content: Text(AppLocalizations.of(context)!
+                                        .descriptionCannotBeEmpty),
                                   ),
                                 );
                               }
                             },
-                            child: const Text('Upload Image'),
+                            child:
+                                Text(AppLocalizations.of(context)!.uploadImage),
                           ),
                         ],
                       ),
@@ -131,7 +138,7 @@ class AddStories extends StatelessWidget {
                           onPressed: () {
                             context.read<AddStoriesCubit>().reset();
                           },
-                          child: const Text('Try Again')),
+                          child: Text(AppLocalizations.of(context)!.tryAgain)),
                     ],
                   ),
                 );

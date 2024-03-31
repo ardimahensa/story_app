@@ -366,10 +366,10 @@ class __$$ImageUploadSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imageFile = freezed,
+    Object? imageFile = null,
   }) {
     return _then(_$ImageUploadSuccessImpl(
-      freezed == imageFile
+      null == imageFile
           ? _value.imageFile
           : imageFile // ignore: cast_nullable_to_non_nullable
               as File,
@@ -395,12 +395,12 @@ class _$ImageUploadSuccessImpl implements _ImageUploadSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImageUploadSuccessImpl &&
-            const DeepCollectionEquality().equals(other.imageFile, imageFile));
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(imageFile));
+  int get hashCode => Object.hash(runtimeType, imageFile);
 
   @JsonKey(ignore: true)
   @override

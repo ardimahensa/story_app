@@ -2,7 +2,7 @@
     <application
         android:label="story_u"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/story_launcher">
 
         <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyDowQGm8kLuxiVZqBB6-DInGkr9B4m27Gc"/>

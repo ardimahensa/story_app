@@ -7,7 +7,9 @@ import 'package:story_u/features/auth/datasource/data/user_data.dart';
 import 'package:story_u/features/detail_stories/bloc/stories_detail_bloc.dart';
 import 'package:story_u/features/stories/cubit/theme_cubit.dart';
 import 'package:story_u/features/stories/bloc/stories_bloc.dart';
+import 'package:story_u/features/stories/presentations/widgets/setting.dart';
 import 'package:story_u/features/stories/presentations/widgets/date_time.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../auth/bloc/login_bloc.dart';
 
@@ -23,10 +25,12 @@ class HomeScreen extends StatelessWidget {
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              backgroundColor: context.select((ThemeCubit cubit) =>
-                  cubit.state.theme
-                      ? const Color.fromARGB(255, 250, 194, 96)
-                      : const Color.fromARGB(255, 82, 82, 88)),
+              backgroundColor: context.select((ThemeCubit cubit) {
+                final ThemeData theme = cubit.state.themeData;
+                return theme.brightness == Brightness.dark
+                    ? const Color.fromARGB(255, 82, 82, 88)
+                    : const Color.fromARGB(255, 250, 194, 96);
+              }),
               title: Row(
                 children: [
                   Text(
@@ -41,6 +45,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
               actions: [
+                //name
                 BlocBuilder<LoginBloc, LoginState>(
                   builder: (context, state) {
                     return FutureBuilder<String?>(
@@ -48,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const CircularProgressIndicator(); // Atau widget lain yang menunjukkan loading
+                          return const CircularProgressIndicator();
                         } else if (snapshot.hasError) {
                           return Text('Error: ${snapshot.error}');
                         } else {
@@ -56,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.only(right: 10),
                             child: Text(
-                              'Hi ${state.maybeWhen(
+                              '${AppLocalizations.of(context)!.hi} ${state.maybeWhen(
                                 loginSuccess: (loginResult) => loginResult.name,
                                 orElse: () => name ?? 'perlu login lagi',
                               )}!',
@@ -67,23 +72,6 @@ class HomeScreen extends StatelessWidget {
                     );
                   },
                 ),
-                // BlocBuilder<LoginBloc, LoginState>(
-                //   builder: (context, state) {
-                //     UserDataLocal userDataLocal = UserDataLocal();
-                //     return Padding(
-                //       padding: const EdgeInsets.only(right: 10),
-                //       child: Text(
-                //         'Hi ${state.maybeWhen(
-                //           loginSuccess: (loginResult) =>
-                //               loginResult.name ?? 'perlu login lagi',
-                //           orElse: () async {
-                //             await userDataLocal.getName();
-                //           },
-                //         )}!',
-                //       ),
-                //     );
-                //   },
-                // ),
                 PopupMenuButton(
                   offset: const Offset(0, 55),
                   icon: const CircleAvatar(
@@ -97,19 +85,25 @@ class HomeScreen extends StatelessWidget {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                    state.theme ? 'Light Theme' : 'Dark Theme'),
+                                Text(state.themeData.brightness ==
+                                        Brightness.light
+                                    ? 'Light Theme'
+                                    : 'Dark Theme'),
                                 Switch(
                                   trackOutlineWidth:
                                       const MaterialStatePropertyAll(0),
                                   thumbIcon: MaterialStatePropertyAll(
-                                    state.theme
+                                    state.themeData.brightness ==
+                                            Brightness.light
                                         ? const Icon(Icons.light_mode_sharp)
                                         : const Icon(Icons.mode_night_rounded),
                                   ),
-                                  value: state.theme,
+                                  value: state.themeData.brightness ==
+                                      Brightness.light,
                                   onChanged: (value) {
-                                    context.read<ThemeCubit>().changeTheme();
+                                    context.read<ThemeCubit>().changeTheme(value
+                                        ? ThemeData.light()
+                                        : ThemeData.dark());
                                   },
                                 ),
                               ],
@@ -127,11 +121,17 @@ class HomeScreen extends StatelessWidget {
 
                               GoRouter.of(context).goNamed('login');
                             },
-                            child: const Text('Logout'),
+                            child: Text(AppLocalizations.of(context)!.logout),
                           ),
                         ),
                       ),
                     ];
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.language),
+                  onPressed: () {
+                    languageDialog(context);
                   },
                 ),
               ],
