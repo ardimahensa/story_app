@@ -164,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               const Color.fromARGB(255, 111, 111, 110),
                         ),
                       );
-                      GoRouter.of(context).goNamed('home');
+                      GoRouter.of(context).goNamed('login');
                     },
                     registerError: (errorMessage) {
                       ScaffoldMessenger.of(context).showSnackBar(
